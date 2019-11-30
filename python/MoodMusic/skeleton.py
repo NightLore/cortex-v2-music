@@ -32,14 +32,12 @@ def loadNetwork():
     the new network into the one that was previously used). """
 
     n = getData('network_info.txt')
-    print(n)
     w = getData('weights.txt')
-    print(w)
     b = getData('biases.txt')
-    print(b)
     net = Network(n)
     net.biases = b
     net.weights = w
+    print("Loaded Network Successfully")
     return net
 
 def getData(filename):
@@ -55,6 +53,7 @@ def newNetwork(layers=np.array([6, 6])):
     The files are used to reload the network when the program is ran again."""
     net = Network(layers)
     saveNetwork(net)
+    print("Created New Network")
     return net
 
 
@@ -105,6 +104,7 @@ def main():
     outputs = ['angry', 'excited', 'focused', 'happy',  'relaxed', 'sad']
     """training = 'training_data.txt'"""
     inputs = np.array([0.25, 0.73, 0.11, 0.55, 0.96, 0.75])
+    print("Input:", inputs)
 
     '''insert lines to get input data if not importing data'''
     
@@ -113,9 +113,9 @@ def main():
     trainNetwork(net, training, inputs)"""
 
     output_node_index = net.get_output_index(inputs)
-    print(output_node_index)
+    print("Output Index:", output_node_index)
     output = outputs[output_node_index]
-    print(output)
+    print("Output:", output)
 
 
 if __name__ == '__main__':

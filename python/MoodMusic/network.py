@@ -11,7 +11,7 @@ class Network(object):
         and the third (output) layer 1 neuron. The biases and weights for the network are
         initialized randomly, using a Gaussian distribution with mean 0, and variance 1.
         No biases are imposed on the first layer."""
-        print("Sizes:", sizes[0])
+        print("Sizes:", sizes)
         self.num_layers = len(sizes)
         self.sizes = sizes
         self.biases = self.random_biases() if biases is None else biases
@@ -27,15 +27,9 @@ class Network(object):
     def output(self, a):
         """Return the output of the network if ``a`` is input.  Output is returned as a column
         vector of all outputs. A separate function is needed to determine which is/are used."""
-        print("Output")
-        
         for b, w in zip(self.biases, self.weights):
-            print("a:", type(a), a)
-            print("b:", type(b), b)
-            print("w:", type(w), w)
             a = sigmoid(np.dot(w, a)+b)
-            
-        return a #sigmoid(np.dot(self.weights, a) + self.biases)
+        return a
 
     def get_output_index(self, inputs):
         a = self.output(inputs)[-1]
