@@ -1,0 +1,60 @@
+Sending request:
+{"jsonrpc": "2.0", "method": "getUserLogin", "params": {}, "id": 1}
+sent; awaiting response
+lib.cortex resp:
+{'currentOSUId': '1001', 'currentOSUsername': 'night', 'loggedInOSUId': '1001', 'loggedInOSUsername': 'night', 'username': 'nmlui'}
+Sending request:
+{"jsonrpc": "2.0", "method": "getCortexInfo", "params": {}, "id": 2}
+sent; awaiting response
+lib.cortex resp:
+{'id': 2, 'jsonrpc': '2.0', 'result': {'buildDate': '2019-11-12T09:47:41', 'buildNumber': 'v2.2.1-10-ge7781ad', 'version': '2.2.3'}}
+Sending request:
+{"jsonrpc": "2.0", "method": "requestAccess", "params": {"clientId": "giG32ARIQ1V9xoDQ0owHZYE3WSBQkGdc4XFAkGj6", "clientSecret": "5DrU7ig8QZx6rUZUnyrIWl9CahgtFAyuGf0zZxlF1HawsnCW1YEvkJ4Znndc4kIrpjzzLK5kojR1Ev3mEJCY05bBpVsjgToy9z7lNWgnH1zC4MIM9Ch9eFhmjVnAyKHO"}, "id": 3}
+sent; awaiting response
+lib.cortex resp:
+{'id': 3, 'jsonrpc': '2.0', 'result': {'accessGranted': True, 'message': 'The user has granted access right to this application.'}}
+Sending request:
+{"jsonrpc": "2.0", "method": "requestAccess", "params": {"clientId": "giG32ARIQ1V9xoDQ0owHZYE3WSBQkGdc4XFAkGj6", "clientSecret": "5DrU7ig8QZx6rUZUnyrIWl9CahgtFAyuGf0zZxlF1HawsnCW1YEvkJ4Znndc4kIrpjzzLK5kojR1Ev3mEJCY05bBpVsjgToy9z7lNWgnH1zC4MIM9Ch9eFhmjVnAyKHO"}, "id": 4}
+sent; awaiting response
+lib.cortex resp:
+{'id': 4, 'jsonrpc': '2.0', 'result': {'accessGranted': True, 'message': 'The user has granted access right to this application.'}}
+Sending request:
+{"jsonrpc": "2.0", "method": "authorize", "params": {"clientId": "giG32ARIQ1V9xoDQ0owHZYE3WSBQkGdc4XFAkGj6", "clientSecret": "5DrU7ig8QZx6rUZUnyrIWl9CahgtFAyuGf0zZxlF1HawsnCW1YEvkJ4Znndc4kIrpjzzLK5kojR1Ev3mEJCY05bBpVsjgToy9z7lNWgnH1zC4MIM9Ch9eFhmjVnAyKHO", "debit": 10000}, "id": 5}
+sent; awaiting response
+lib.cortex resp:
+{'id': 5, 'jsonrpc': '2.0', 'result': {'cortexToken': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6ImNvbS5ubWx1aS5tb29keW11c2ljIiwiYXBwVmVyc2lvbiI6IjEuMCIsImV4cCI6MTU3NTYxODgzNSwibmJmIjoxNTc1MzU5NjM1LCJ1c2VySWQiOiJmNGZiNjQ5YS01ZmNlLTQ0NGYtOTNkYS01ZWJkZDVmNTcyYzUiLCJ1c2VybmFtZSI6Im5tbHVpIiwidmVyc2lvbiI6IjIuMCJ9.n8oZl0gIojnJEbf1IS11IsTeea6OMKnlOVn5d9pbMK0='}}
+Sending request:
+{"jsonrpc": "2.0", "method": "getLicenseInfo", "params": {"cortexToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6ImNvbS5ubWx1aS5tb29keW11c2ljIiwiYXBwVmVyc2lvbiI6IjEuMCIsImV4cCI6MTU3NTYxODgzNSwibmJmIjoxNTc1MzU5NjM1LCJ1c2VySWQiOiJmNGZiNjQ5YS01ZmNlLTQ0NGYtOTNkYS01ZWJkZDVmNTcyYzUiLCJ1c2VybmFtZSI6Im5tbHVpIiwidmVyc2lvbiI6IjIuMCJ9.n8oZl0gIojnJEbf1IS11IsTeea6OMKnlOVn5d9pbMK0="}, "id": 6}
+sent; awaiting response
+lib.cortex resp:
+{'id': 6, 'jsonrpc': '2.0', 'result': {'isOnline': True, 'license': {'applications': ['com.emotiv.sdk.basic'], 'billingFrom': '2019-09-25T17:00:00.000-07:00', 'billingTo': '2029-09-22T17:00:00.000-07:00', 'deviceInfo': {'deviceLimit': 3, 'devicesPerSeat': 3, 'sessionLimit': {'day': None, 'month': None, 'year': None}}, 'expired': False, 'extenderLimit': 0, 'hardLimitTime': '2020-01-02T15:59:59.999-08:00', 'isCommercial': False, 'licenseId': 'fdea9c86-64f9-4758-84c1-06f170725d88', 'licenseName': 'Basic License', 'localQuota': 279993, 'maxDebit': None, 'scopes': [''], 'seatCount': 1, 'sessionCount': 1, 'softLimitTime': '2019-12-26T15:59:59.999-08:00', 'totalDebit': 130000, 'totalRegisteredDevices': 1, 'validFrom': '2019-09-25T17:00:00.000-07:00', 'validTo': '2029-09-23T16:59:59.999-07:00'}}}
+Sending request:
+{"jsonrpc": "2.0", "method": "queryHeadsets", "params": {}, "id": 7}
+sent; awaiting response
+lib.cortex found headsets ['INSIGHT-59684080']
+lib.cortex resp:
+{'id': 7, 'jsonrpc': '2.0', 'result': [{'connectedBy': 'dongle', 'customName': '', 'dongle': '6ff', 'firmware': '814', 'id': 'INSIGHT-59684080', 'motionSensors': ['GYROX', 'GYROY', 'GYROZ', 'ACCX', 'ACCY', 'ACCZ', 'MAGX', 'MAGY', 'MAGZ'], 'sensors': ['AF3', 'T7', 'Pz', 'T8', 'AF4'], 'settings': {'eegRate': 128, 'eegRes': 14, 'memsRate': 128, 'memsRes': 14, 'mode': 'INSIGHT'}, 'status': 'connected'}]}
+Sending request:
+{"jsonrpc": "2.0", "method": "createSession", "params": {"cortexToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6ImNvbS5ubWx1aS5tb29keW11c2ljIiwiYXBwVmVyc2lvbiI6IjEuMCIsImV4cCI6MTU3NTYxODgzNSwibmJmIjoxNTc1MzU5NjM1LCJ1c2VySWQiOiJmNGZiNjQ5YS01ZmNlLTQ0NGYtOTNkYS01ZWJkZDVmNTcyYzUiLCJ1c2VybmFtZSI6Im5tbHVpIiwidmVyc2lvbiI6IjIuMCJ9.n8oZl0gIojnJEbf1IS11IsTeea6OMKnlOVn5d9pbMK0=", "headset": "INSIGHT-59684080", "status": "active"}, "id": 8}
+sent; awaiting response
+lib.cortex resp:
+{'id': 8, 'jsonrpc': '2.0', 'result': {'appId': 'com.nmlui.moodymusic', 'headset': {'connectedBy': 'dongle', 'customName': '', 'dongle': '6ff', 'firmware': '814', 'id': 'INSIGHT-59684080', 'motionSensors': ['GYROX', 'GYROY', 'GYROZ', 'ACCX', 'ACCY', 'ACCZ', 'MAGX', 'MAGY', 'MAGZ'], 'sensors': ['AF3', 'T7', 'Pz', 'T8', 'AF4'], 'settings': {'eegRate': 128, 'eegRes': 14, 'memsRate': 128, 'memsRes': 14, 'mode': 'INSIGHT'}, 'status': 'connected'}, 'id': '53bb71d2-c722-491c-8569-118dbd96563a', 'license': 'fdea9c86-64f9-4758-84c1-06f170725d88', 'owner': 'nmlui', 'recordIds': [], 'recording': False, 'started': '2019-12-03T23:53:55.457-08:00', 'status': 'activated', 'stopped': '', 'streams': []}}
+Sending request:
+{"jsonrpc": "2.0", "method": "createRecord", "params": {"cortexToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6ImNvbS5ubWx1aS5tb29keW11c2ljIiwiYXBwVmVyc2lvbiI6IjEuMCIsImV4cCI6MTU3NTYxODgzNSwibmJmIjoxNTc1MzU5NjM1LCJ1c2VySWQiOiJmNGZiNjQ5YS01ZmNlLTQ0NGYtOTNkYS01ZWJkZDVmNTcyYzUiLCJ1c2VybmFtZSI6Im5tbHVpIiwidmVyc2lvbiI6IjIuMCJ9.n8oZl0gIojnJEbf1IS11IsTeea6OMKnlOVn5d9pbMK0=", "session": "53bb71d2-c722-491c-8569-118dbd96563a", "title": "test record 1"}, "id": 9}
+sent; awaiting response
+lib.cortex resp:
+{'id': 9, 'jsonrpc': '2.0', 'result': {'record': {'applicationId': 'com.nmlui.moodymusic', 'applicationVersion': '1.0', 'description': '', 'endDatetime': '', 'experimentId': 0, 'licenseId': 'fdea9c86-64f9-4758-84c1-06f170725d88', 'licenseScope': [''], 'localOnly': False, 'ownerId': 'f4fb649a-5fce-444f-93da-5ebdd5f572c5', 'startDatetime': '2019-12-03T23:53:55.381950-08:00', 'tags': [], 'title': 'test record 1', 'uuid': 'f1872501-7258-4b06-88b3-e8d67f300d3f'}, 'sessionId': '53bb71d2-c722-491c-8569-118dbd96563a'}}
+Sending request:
+{"jsonrpc": "2.0", "method": "subscribe", "params": {"cortexToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6ImNvbS5ubWx1aS5tb29keW11c2ljIiwiYXBwVmVyc2lvbiI6IjEuMCIsImV4cCI6MTU3NTYxODgzNSwibmJmIjoxNTc1MzU5NjM1LCJ1c2VySWQiOiJmNGZiNjQ5YS01ZmNlLTQ0NGYtOTNkYS01ZWJkZDVmNTcyYzUiLCJ1c2VybmFtZSI6Im5tbHVpIiwidmVyc2lvbiI6IjIuMCJ9.n8oZl0gIojnJEbf1IS11IsTeea6OMKnlOVn5d9pbMK0=", "session": "53bb71d2-c722-491c-8569-118dbd96563a", "streams": ["met"]}, "id": 10}
+sent; awaiting response
+lib.cortex resp:
+{'id': 10, 'jsonrpc': '2.0', 'result': {'failure': [], 'success': [{'cols': ['eng.isActive', 'eng', 'exc.isActive', 'exc', 'lex', 'str.isActive', 'str', 'rel.isActive', 'rel', 'int.isActive', 'int', 'foc.isActive', 'foc'], 'sid': '53bb71d2-c722-491c-8569-118dbd96563a', 'streamName': 'met'}]}}
+get_data got {"met":[false,0.568411,false,0.340233,0.0,false,0.39834,false,0.446457,false,0.603196,false,0.278061],"sid":"53bb71d2-c722-491c-8569-118dbd96563a","time":1575446042.3645}
+Sending request:
+{"jsonrpc": "2.0", "method": "updateSession", "params": {"cortexToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6ImNvbS5ubWx1aS5tb29keW11c2ljIiwiYXBwVmVyc2lvbiI6IjEuMCIsImV4cCI6MTU3NTYxODgzNSwibmJmIjoxNTc1MzU5NjM1LCJ1c2VySWQiOiJmNGZiNjQ5YS01ZmNlLTQ0NGYtOTNkYS01ZWJkZDVmNTcyYzUiLCJ1c2VybmFtZSI6Im5tbHVpIiwidmVyc2lvbiI6IjIuMCJ9.n8oZl0gIojnJEbf1IS11IsTeea6OMKnlOVn5d9pbMK0=", "session": "53bb71d2-c722-491c-8569-118dbd96563a", "status": "close"}, "id": 11}
+sent; awaiting response
+lib.cortex resp:
+{'id': 11, 'jsonrpc': '2.0', 'result': {'appId': 'com.nmlui.moodymusic', 'headset': {'connectedBy': 'dongle', 'customName': '', 'dongle': '6ff', 'firmware': '814', 'id': 'INSIGHT-59684080', 'motionSensors': ['GYROX', 'GYROY', 'GYROZ', 'ACCX', 'ACCY', 'ACCZ', 'MAGX', 'MAGY', 'MAGZ'], 'sensors': ['AF3', 'T7', 'Pz', 'T8', 'AF4'], 'settings': {'eegRate': 128, 'eegRes': 14, 'memsRate': 128, 'memsRes': 14, 'mode': 'INSIGHT'}, 'status': 'connected'}, 'id': '53bb71d2-c722-491c-8569-118dbd96563a', 'license': 'fdea9c86-64f9-4758-84c1-06f170725d88', 'owner': 'nmlui', 'recordIds': ['f1872501-7258-4b06-88b3-e8d67f300d3f'], 'recording': False, 'started': '2019-12-03T23:53:55.457-08:00', 'status': 'closed', 'stopped': '2019-12-03T23:54:02.448-08:00', 'streams': []}}
+C:\Users\night\Documents\Github\cortex-v2-music\python\lib\cortex.py:173: RuntimeWarning: coroutine 'WebSocketCommonProtocol.close' was never awaited
+  self.websocket.close()
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback

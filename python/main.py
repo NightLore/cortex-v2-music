@@ -24,42 +24,39 @@ def print_data(data):
     print("Focus:", data["met"][12])
 
 async def connect(cortex):
+    print("Loading Cortex", flush=True)
     # await cortex.inspectApi()
-    #print("** USER LOGIN **")
     await cortex.get_user_login()
-    #print("** GET CORTEX INFO **")
     await cortex.get_cortex_info()
-    #print("** HAS ACCESS RIGHT **")
     await cortex.has_access_right()
-    #print("** REQUEST ACCESS **")
     await cortex.request_access()
-    #print("** AUTHORIZE **")
     await cortex.authorize(debit=10000)
-    #print("** GET LICENSE INFO **")
     await cortex.get_license_info()
-    #print("** QUERY HEADSETS **")
+    print("Connecting to headset...", flush=True)
     await cortex.query_headsets()
     if len(cortex.headsets) > 0:
-        #print("** CREATE SESSION **")
+        print("Headset connected", flush=True)
         await cortex.create_session(activate=True,
                                     headset_id=cortex.headsets[0])
-        #print("** CREATE RECORD **")
         await cortex.create_record(title="test record 1")
-        #print("** SUBSCRIBE MET **")
         await cortex.subscribe(['met'])
         
         stats = [0, 0, 0, 0, 0, 0]
         count = 0
-        while input().strip() is not "q":
-            data = json.loads(await cortex.get_data())
-            print_data(data)
-            count = update_stats(stats, data, count)
+        #while input().strip() is not "q":
+        data = json.loads(await cortex.get_data())
+        print_data(data)
+        count = update_stats(stats, data, count)
         await cortex.close_session()
+    else:
+        print("Failed to connect to headset", flush=True)
 
 
 def run():
+    print("Starting...", flush=True)
     cortex = Cortex('./cortex_creds')
     asyncio.run(connect(cortex))
+    print("CLOSING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     cortex.close()
 
 
