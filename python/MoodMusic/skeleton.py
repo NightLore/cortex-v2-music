@@ -9,9 +9,9 @@ for a network with 4 inputs and 4 outputs.
 The input data can be just a list such as [0.25 0.3 -0.47 0.5] for a network with 4
 inputs. All inputs and outputs have to range from -1 to 1."""
 
-"""Things still left to implement: supervised learning (when an input is received, create tuple
-of inputs and expected output and either add this to training data or retrain network using this),
-getting input data (unless importing data from .txt file, inputs are currently not being taken)"""
+"""Things still left to implement:
+getting input data (unless importing data from .txt file
+inputs are currently not being taken)"""
 
 
 def getNetwork():
@@ -21,7 +21,7 @@ def getNetwork():
     try:
         return loadNetwork()
     except:
-        """input, output, 6 nodes in each"""
+        print("\nNetwork failed to load/No usable Network in directory \n")
         return newNetwork()
 
 
@@ -32,11 +32,11 @@ def loadNetwork():
     the new network into the one that was previously used). """
 
     n = getData('network_info.txt')
-    print(n)
+    print("Loaded Network Info Successfully")
     w = getData('weights.txt')
-    print(w)
+    print("Loaded Weights Successfully")
     b = getData('biases.txt')
-    print(b)
+    print("Loaded Biases Successfully")
     net = Network(n)
     net.biases = b
     net.weights = w
@@ -54,6 +54,7 @@ def newNetwork(layers=np.array([6, 6])):
     in the list. Also creates three files that contain the data of the network.
     The files are used to reload the network when the program is ran again."""
     net = Network(layers)
+    print("New Network Created")
     saveNetwork(net)
     return net
 
@@ -87,35 +88,58 @@ def saveNetwork(net):
     """Saves the data of the network necessary to recreate the network.
     All previous data on the network is removed, so there is no history
     of the network saved."""
-    writeData('network_info.txt', net.sizes)
-    writeData('weights.txt', net.weights)
-    writeData('biases.txt', net.biases)
+    try:
+        writeData('network_info.txt', net.sizes)
+        writeData('weights.txt', net.weights)
+        writeData('biases.txt', net.biases)
+        print("Network Saved Successfully")
+    except:
+        print("Error Saving Network")
 
-'''
-Assumes data is an array of numpy arrays
-'''
+
+
 def writeData(filename, data):
+    # Assumes data is an array of numpy arrays
     with open(filename, 'w') as f:
         f.write(np.array_str(data))
 
+
+def fixer(feeling, outputs):
+    out = np.array([0]*len(outputs))
+    feeling = feeling.lower()
+    for i in range(len(outputs)):
+        if feeling == outputs[i]:
+            feeling = i
+    out[feeling] = 1
+    return out
+
+
+def superlearn(net, inputs, output):
+    net.SGD([(inputs, output)], 1, 1, 0.5)
+    saveNetwork(net)
+
 def main():
-    #net = newNetwork()
-    #net = getNetwork()
-    net = loadNetwork()
+    net = getNetwork()
     outputs = ['angry', 'excited', 'focused', 'happy',  'relaxed', 'sad']
     """training = 'training_data.txt'"""
     inputs = np.array([0.25, 0.73, 0.11, 0.55, 0.96, 0.75])
 
-    '''insert lines to get input data if not importing data'''
-    
-    """"# iterations =
-    # rate =
-    trainNetwork(net, training, inputs)"""
+    while True:
+        '''insert lines to get input data'''
 
-    output_node_index = net.get_output_index(inputs)
-    print(output_node_index)
-    output = outputs[output_node_index]
-    print(output)
+
+        """"# iterations =
+        # rate =
+        trainNetwork(net, training, inputs)"""
+
+        output_node_index = net.get_output_index(inputs)
+        output = outputs[output_node_index]
+        print("\nI believe you are feeling " + output)
+
+        feeling = input("\nHow are you feeling? (Choose one):\nAngry\nExcited\nFocused" +
+                        "\nHappy\nRelaxed\nSad\n")
+        correctout = fixer(feeling, outputs)
+        superlearn(net, inputs, correctout)
 
 
 if __name__ == '__main__':
