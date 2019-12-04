@@ -51,19 +51,19 @@ class Network(object):
         tracking progress, but slows things down substantially."""
         """Example y is [0, 0, 1, 0, 0, 0] where 1 is correct output"""
         print("\nBegin Training")
-        training_data = list(training_data)
+        training_data = np.array(training_data)
         n = len(training_data)
 
         if inputs:
-            inputs = list(inputs)
+            inputs = np.array(inputs)
             n_input = len(inputs)
         else:
             n_input = None
         for j in range(iterations):
             random.shuffle(training_data)
-            mini_batches = [
+            mini_batches = np.array([
                 training_data[k:k+mini_batch_size]
-                for k in range(0, n, mini_batch_size)]
+                for k in range(0, n, mini_batch_size)])
             for mini_batch in mini_batches:
                 self.update_mini_batch(mini_batch, rate)
             if inputs:
@@ -84,10 +84,10 @@ class Network(object):
             delta_nabla_b, delta_nabla_w = self.backprop(x, y)
             nabla_b = [nb+dnb for nb, dnb in zip(nabla_b, delta_nabla_b)]
             nabla_w = [nw+dnw for nw, dnw in zip(nabla_w, delta_nabla_w)]
-        self.weights = [w-(rate/len(mini_batch))*nw
-                        for w, nw in zip(self.weights, nabla_w)]
-        self.biases = [b-(rate/len(mini_batch))*nb
-                       for b, nb in zip(self.biases, nabla_b)]
+        self.weights = np.array([w-(rate/len(mini_batch))*nw
+                                 for w, nw in zip(self.weights, nabla_w)])
+        self.biases = np.array([b-(rate/len(mini_batch))*nb
+                                for b, nb in zip(self.biases, nabla_b)])
 
     def backprop(self, x, y):
         """Return a tuple ``(nabla_b, nabla_w)`` representing the

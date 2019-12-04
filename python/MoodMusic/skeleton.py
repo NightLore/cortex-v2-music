@@ -32,14 +32,12 @@ def loadNetwork():
     the new network into the one that was previously used). """
 
     n = getData('network_info.txt')
-    print("Loaded Network Info Successfully")
     w = getData('weights.txt')
-    print("Loaded Weights Successfully")
     b = getData('biases.txt')
-    print("Loaded Biases Successfully")
     net = Network(n)
     net.biases = b
     net.weights = w
+    print("Loaded Network Successfully")
     return net
 
 def getData(filename):
