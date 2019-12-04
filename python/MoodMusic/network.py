@@ -27,15 +27,9 @@ class Network(object):
     def output(self, a):
         """Return the output of the network if ``a`` is input.  Output is returned as a column
         vector of all outputs. A separate function is needed to determine which is/are used."""
-        print("Output")
-        
         for b, w in zip(self.biases, self.weights):
-            print("a:", type(a), a)
-            print("b:", type(b), b)
-            print("w:", type(w), w)
             a = sigmoid(np.dot(w, a)+b)
-            
-        return a #sigmoid(np.dot(self.weights, a) + self.biases)
+        return a
 
     def get_output_index(self, inputs):
         a = self.output(inputs)[-1]
@@ -56,7 +50,7 @@ class Network(object):
         the input data after each iteration, and partial progress printed out.  This is useful for
         tracking progress, but slows things down substantially."""
         """Example y is [0, 0, 1, 0, 0, 0] where 1 is correct output"""
-
+        print("\nBegin Training")
         training_data = list(training_data)
         n = len(training_data)
 
@@ -76,6 +70,7 @@ class Network(object):
                 print("Iteration {} : {} / {}".format(j, self.evaluate(inputs), n_input))
             else:
                 print("Iteration {} complete".format(j))
+        print("End Training \n")
 
     def update_mini_batch(self, mini_batch, rate):
         """Update the network's weights and biases by applying
