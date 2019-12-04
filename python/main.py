@@ -1,5 +1,6 @@
 import asyncio
 import json
+import MoodMusic.skeleton as skeleton
 from lib.cortex import Cortex
 
 def update_stats(stats, data, count):
@@ -43,16 +44,37 @@ async def connect(cortex):
         
         stats = [0, 0, 0, 0, 0, 0]
         count = 0
-        #while input().strip() is not "q":
+        outputs = skeleton.getDefaultOutputs()
+        
         data = json.loads(await cortex.get_data())
         print_data(data)
         count = update_stats(stats, data, count)
+        
+        net = skeleton.getNetwork()
+        output_node_index = net.get_output_index(stats)
+        output = outputs[output_node_index]
+        print("\nI believe you are feeling " + output)
+        
+        feeling = input("\nHow are you feeling? (Choose one):\n"
+                        "(Angry|Excited|Focused|Happy|Relaxed|Sad)\n")
+        while feeling.strip() is not "q":
+            skeleton.superlearn(net, stats, skeleton.fixer(feeling, skeleton.getDefaultOutputs()))
+            data = json.loads(await cortex.get_data())
+            print_data(data)
+            count = update_stats(stats, data, count)
+            
+            output_node_index = net.get_output_index(stats)
+            output = outputs[output_node_index]
+            print("\nI believe you are feeling " + output)
+                    
+            feeling = input("\nHow are you feeling? (q to quit):\n"
+                            "(Angry|Excited|Focused|Happy|Relaxed|Sad)\n")
         await cortex.close_session()
     else:
         print("Failed to connect to headset", flush=True)
 
 
-def run():
+def main():
     print("Starting...", flush=True)
     cortex = Cortex('./cortex_creds')
     asyncio.run(connect(cortex))
@@ -61,4 +83,4 @@ def run():
 
 
 if __name__ == '__main__':
-    run()
+    main()

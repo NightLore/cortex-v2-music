@@ -1,4 +1,4 @@
-from network import *
+from .network import *
 import json
 
 """Use this as a general framework to use the Network class.
@@ -117,9 +117,12 @@ def superlearn(net, inputs, output):
     net.SGD([(inputs, output)], 1, 1, 0.5)
     saveNetwork(net)
 
+def getDefaultOutputs():
+    return ['angry', 'excited', 'focused', 'happy',  'relaxed', 'sad']
+
 def main():
     net = getNetwork()
-    outputs = ['angry', 'excited', 'focused', 'happy',  'relaxed', 'sad']
+    output = getDefaultOutputs()
     """training = 'training_data.txt'"""
     inputs = np.array([0.25, 0.73, 0.11, 0.55, 0.96, 0.75])
     print("Input:", inputs)
@@ -131,11 +134,9 @@ def main():
         """"# iterations =
         # rate =
         trainNetwork(net, training, inputs)"""
-
         output_node_index = net.get_output_index(inputs)
         output = outputs[output_node_index]
         print("\nI believe you are feeling " + output)
-        
         feeling = input("\nHow are you feeling? (Choose one):\nAngry\nExcited\nFocused" +
                         "\nHappy\nRelaxed\nSad\n")
         correctout = fixer(feeling, outputs)
