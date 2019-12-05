@@ -2,7 +2,7 @@ from os import listdir
 from os.path import isfile, join
 import random
 
-def importFiles(paths):
+def importFiles(paths=['./music/angry', './music/excited', './music/focused', './music/happy',  './music/relaxed', './music/sad']):
     files = []
     for path in paths:
         files.append([f for f in listdir(path) if isfile(join(path, f))])

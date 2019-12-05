@@ -53,8 +53,25 @@ def newNetwork(layers=np.array([6, 6])):
     The files are used to reload the network when the program is ran again."""
     net = Network(layers)
     print("New Network Created")
+    print("Training new network")
+    training_data_inputs = np.array([[0.1, 0.1, 0.1, 0.9, 0.1, 0.1], #excited
+                                     [0.9, 0.5, 0.7, 0.7, 0.5, 0.1], #angry
+                                     [0.1, 0.1, 0.1, 0.1, 0.9, 0.1], #focused
+                                     [0.1, 0.5, 0.5, 0.9, 0.1, 0.5], #happy
+                                     [0.1, 0.1, 0.1, 0.1, 0.1, 0.1], #relaxed
+                                     [0.5, 0.5, 0.5, 0.1, 0.1, 0.1]  #sad
+                                     ])
+    training_data_outputs = np.array([[1, 0, 0, 0, 0, 0],
+                                      [0, 1, 0, 0, 0, 0],
+                                      [0, 0, 1, 0, 0, 0],
+                                      [0, 0, 0, 1, 0, 0],
+                                      [0, 0, 0, 0, 1, 0],
+                                      [0, 0, 0, 0, 0, 1]])
+    for i in range(len(training_data_inputs)):
+        superlearn(net, training_data_inputs[i], training_data_outputs[i])
+    print("New network trained")
     saveNetwork(net)
-    print("Created New Network")
+    print("New Network Created Successfully")
     return net
 
 
@@ -106,10 +123,11 @@ def writeData(filename, data):
 def fixer(feeling, outputs):
     out = np.array([0]*len(outputs))
     feeling = feeling.lower()
+    index = 0
     for i in range(len(outputs)):
-        if feeling == outputs[i]:
-            feeling = i
-    out[feeling] = 1
+        if feeling[0] == outputs[i][0]:
+            index = i
+    out[index] = 1
     return out
 
 
