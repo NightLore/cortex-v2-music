@@ -26,9 +26,10 @@ def print_data(data):
 def recommend(net, stats, songs, outputs):
     feeling_index = net.get_output_index(stats)
     feeling = outputs[feeling_index]
-    print("\nI believe you are feeling", feeling)
+    print("--------------------------------------------")
+    print("\nI believe you are feeling", feeling, flush=True)
     recommendation = importer.getRandom(songs[feeling_index])
-    print("I recommend:", recommendation)
+    print("I recommend:", recommendation, flush=True)
     return feeling
 
 def querySatisfaction(feeling):
@@ -36,6 +37,8 @@ def querySatisfaction(feeling):
     if satisfied[0] is 'n':
         return input("How are you really feeling? (Choose one)\n"
                      "(Angry|Excited|Focused|Happy|Relaxed|Sad)|Pass|Quit\n").strip().lower()
+    if satisfied[0] is 'q':
+        return satisfied[0]
     return feeling
     
 async def connect(cortex):
